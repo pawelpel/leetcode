@@ -17,7 +17,6 @@ class Solution:
             if curr_sum < 0:
                 curr_sum = 0
 
-            print(i, curr_sum, ret_sum)
         return ret_sum
 
 
