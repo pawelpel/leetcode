@@ -4,23 +4,22 @@ from typing import List
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        curr_product = ret_product = nums[0]
+        nums_len = len(nums)
 
-        for i in range(1, len(nums)):
+        max_so_far = nums[0]
+        max_end = min_end = max_so_far
 
-            new_product = curr_product * nums[i]
-            print(i, new_product, curr_product, ret_product)
+        for i in range(1, nums_len):
+            temp = max_end
 
-            if new_product > curr_product or i+1 < len(nums) and new_product * nums[i+1] > curr_product:
-                curr_product = new_product
-            else:
-                curr_product = nums[i]
+            n = nums[i]
 
-            if curr_product > ret_product:
-                ret_product = curr_product
+            max_end = max(n, n * temp, n * min_end)
+            min_end = min(n, n * temp, n * min_end)
 
-        return ret_product
+            max_so_far = max(max_so_far, max_end, min_end)
 
+        return max_so_far
 
 
 s = Solution()
